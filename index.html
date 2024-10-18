@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya</title>
+    <link rel="stylesheet" href="./assets/bootstrap.css">
+</head>
+<body class="d-flex gap-3 flex-column bg-body">
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-body shadow">
+        <div class="container d-flex justify-content-end">
+            <div class="" id="navbarNavAltMarkup">
+                <div class="navbar-nav d-flex flex-row gap-3">
+                    <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                    <a class="nav-link" href="#">PRODUCT</a>
+                    <a class="nav-link" href="#">GALLERY</a>
+                    <a class="nav-link" href="#">BLOG</a>
+                    <a class="nav-link" href="#">INVENTORY</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex align-self-center shadow mt-4 mb-2 p-3 gap-5 rounded w-75">
+        <div class="left d-flex gap-2 flex-grow-1">
+            <img src="./assets/pct.png" style="width: 150px; height: 150px;">
+            <div class="d-flex flex-column">
+                <div class="flex-grow-1">
+                    <h1 id="name" class="mb-1">Nama Anda</h1>
+                    <p id="role" class="text-secondary">Front End Designer</p>
+                </div>
+                <div class="flex-grow-1">
+                    <button type="button" id="editBtn" class="btn btn-primary me-1">Edit</button>
+                    <button type="button" id="resumeBtn" class="btn btn-outline-success">Resume</button>
+                </div>
+            </div>
+        </div>
+        <div class="right d-flex flex-grow-1">
+            <div class="left me-4">
+                <p class="fw-bold m-2">Availability</p>
+                <p class="fw-bold m-2">Usia</p>
+                <p class="fw-bold m-2">Lokasi</p>
+                <p class="fw-bold m-2">Pengalaman</p>
+                <p class="fw-bold m-2">Email</p>
+            </div>
+            <div class="right">
+                <p id="availability" class="m-2">Full Time</p>
+                <p id="usia" class="m-2">19</p>
+                <p id="lokasi" class="m-2">Jakarta</p>
+                <p id="exp" class="m-2">2</p>
+                <p id="email" class="m-2">email@gmail.com</p>
+            </div>
+        </div>
+    </div>
+    <form action="#" id="form" class="flex-column align-self-center w-75 rounded shadow p-4 gap-2 mb-5">
+        <div class="">
+            <label for="namaIsian" class="form-label fw-bold">Nama</label>
+            <input type="text" class="form-control" id="namaIsian">
+        </div>
+        <div class="">
+            <label for="roleIsian" class="form-label fw-bold">Role</label>
+            <input type="text" class="form-control" id="roleIsian">
+        </div>
+        <div class="">
+            <label for="avaiIsian" class="form-label fw-bold">Availability</label>
+            <input type="text" class="form-control" id="avaiIsian">
+        </div>
+        <div class="">
+            <label for="usiaIsian" class="form-label fw-bold">Usia</label>
+            <input type="text" class="form-control" id="usiaIsian">
+        </div>
+        <div class="">
+            <label for="lokasiIsian" class="form-label fw-bold">Lokasi</label>
+            <input type="text" class="form-control" id="lokasiIsian">
+        </div>
+        <div class="">
+            <label for="tahunIsian" class="form-label fw-bold">Years Experience</label>
+            <input type="text" class="form-control" id="tahunIsian">
+        </div>
+        <div class="">
+            <label for="emailIsian" class="form-label fw-bold">Email</label>
+            <input type="email" class="form-control" id="emailIsian">
+        </div>
+        <button type="button" id="submit" class="btn btn-success fw-bold text-bg-success mt-2" style="font-size: 10pt;">SUBMIT</button>
+    </form>
+     <script>
+        // text
+        let name = document.getElementById('name')
+        let role = document.getElementById('role')
+        let availability = document.getElementById('availability')
+        let usia = document.getElementById('usia')
+        let lokasi = document.getElementById('lokasi')
+        let exp = document.getElementById('exp')
+        let email = document.getElementById('email')
+
+        // form
+        let form = document.getElementById('form')
+         let namaIsian = document.getElementById('namaIsian')
+         let roleIsian = document.getElementById('roleIsian')
+         let avaiIsian = document.getElementById('avaiIsian')
+         let usiaIsian = document.getElementById('usiaIsian')
+         let lokasiIsian = document.getElementById('lokasiIsian')
+         let tahunIsian = document.getElementById('tahunIsian')
+         let emailIsian = document.getElementById('emailIsian')
+
+        //  button
+         let submit = document.getElementById('submit')
+         let btnEdit = document.getElementById('editBtn')
+
+        form.style.display = 'none'
+
+        btnEdit.addEventListener('click', () => {
+            namaIsian.value = name.innerText
+            roleIsian.value = role.innerText
+            avaiIsian.value = availability.innerText
+            usiaIsian.value = usia.innerText
+            lokasiIsian.value = lokasi.innerText
+            tahunIsian.value = exp.innerText
+            emailIsian.value = email.innerText
+            form.style.display = 'flex'
+        })
+
+        submit.addEventListener('click', () => {
+            let data = {
+                namaIsian: namaIsian.value, 
+                roleIsian: roleIsian.value, 
+                avaiIsian: avaiIsian.value,
+                usiaIsian: usiaIsian.value, 
+                lokasiIsian: lokasiIsian.value, 
+                tahunIsian: tahunIsian.value, 
+                emailIsian: emailIsian.value
+            }
+            localStorage.setItem('dev', JSON.stringify(data))
+            window.location.reload()
+        })
+
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('dev')) {
+                let data = JSON.parse(localStorage.getItem('dev'))
+                name.innerText = data.namaIsian
+                role.innerText = data.roleIsian
+                availability.innerText = data.avaiIsian
+                usia.innerText = data.usiaIsian
+                lokasi.innerText = data.lokasiIsian
+                exp.innerText = data.tahunIsian
+                email.innerText = data.emailIsian
+            }
+        })
+     </script>
+    <script src="./assets/bootstrap.js"></script>
+</body>
+</html>
